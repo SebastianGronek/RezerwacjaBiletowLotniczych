@@ -22,4 +22,13 @@ public class Flight {
     private String destination;
     private String durationOfFlight;
 
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "id=" + id +
+                ", startingLocalization='" + startingLocalization + '\'' +
+                ", destination='" + destination + '\'' +
+                ", durationOfFlight='" + durationOfFlight + '\'' +
+                '}';
+    }
 }
