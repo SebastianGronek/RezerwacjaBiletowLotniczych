@@ -1,5 +1,5 @@
-INSERT INTO Flight (startingLocalization, destination, durationOfFlight) VALUES ('Barcelona', 'London', '7')
-INSERT INTO Flight (startingLocalization, destination, durationOfFlight) VALUES ('Barcelona', 'London', '12')
-INSERT INTO Flight (startingLocalization, destination, durationOfFlight) VALUES ('Barcelona', 'Munich', '4')
-INSERT INTO Flight (startingLocalization, destination, durationOfFlight) VALUES ('Madrid', 'Lisbon', '2')
-INSERT INTO Flight (startingLocalization, destination, durationOfFlight) VALUES ('London', 'Oslo', '3')
+INSERT INTO flight (starting_localization, destination, duration_of_flight) VALUES ('Barcelona', 'London', '7');
+INSERT INTO flight (starting_localization, destination, duration_of_flight) VALUES ('Barcelona', 'London', '12');
+INSERT INTO flight (starting_localization, destination, duration_of_flight) VALUES ('Barcelona', 'Munich', '4');
+INSERT INTO flight (starting_localization, destination, duration_of_flight) VALUES ('Madrid', 'Lisbon', '2');
+INSERT INTO flight (starting_localization, destination, duration_of_flight) VALUES ('London', 'Oslo', '3');
