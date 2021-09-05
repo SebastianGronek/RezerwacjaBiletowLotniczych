@@ -8,7 +8,7 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-@Entity
+@Entity(name="users")
 public class User {
 
     @Id
