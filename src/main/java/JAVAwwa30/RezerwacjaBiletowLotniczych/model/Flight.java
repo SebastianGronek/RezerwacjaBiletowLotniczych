@@ -27,6 +27,7 @@ public class Flight {
     private String durationOfFlight;
     private LocalDateTime dateOfFlight;
 
+
     @Override
     public String toString() {
         return "Flight{" +
