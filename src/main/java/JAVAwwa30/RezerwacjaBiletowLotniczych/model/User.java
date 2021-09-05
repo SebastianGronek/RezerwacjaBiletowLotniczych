@@ -16,8 +16,8 @@ public class User {
     private Long userId;
     private String userFirstName;
     private String userName;
-    private List ticketList;
-    private List archivalTicketList;
+    private List <Flight> ticketList;
+    private List <Flight> archivalTicketList;
 
 
     @Override
