@@ -27,4 +27,9 @@ public class User {
     @ManyToMany
     private List <Flight> ticketList;
 
+
+    public User(String userFirstName, String userName) {
+        this.userFirstName = userFirstName;
+        this.userName = userName;
+    }
 }

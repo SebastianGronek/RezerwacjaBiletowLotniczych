@@ -16,12 +16,12 @@ public class UserController {
     UserRepository userRepository;
 
     @PostMapping("/addUser")
-    private User addUser(User user) {
+    public User addUser(User user) {
         return userRepository.save(user);
     }
 
     @PostMapping("/createUser")
-    User createUser(String userFirstName, String userName, List<Flight> ticketList){
-        return new User(1L, userFirstName, userName, ticketList);
+    public User createUser(String userFirstName, String userName) {
+        return addUser(new User(userFirstName, userName));
     }
 }
