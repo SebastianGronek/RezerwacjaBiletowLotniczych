@@ -3,6 +3,7 @@ package JAVAwwa30.RezerwacjaBiletowLotniczych.model;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import java.util.List;
 
@@ -16,19 +17,7 @@ public class User {
     private Long userId;
     private String userFirstName;
     private String userName;
+    @ManyToMany
     private List <Flight> ticketList;
-    private List <Flight> archivalTicketList;
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "userId=" + userId +
-                ", userFirstName='" + userFirstName + '\'' +
-                ", userName='" + userName + '\'' +
-                ", ticketList='" + ticketList + '\'' +
-                ", archivalTicketList='" + archivalTicketList + '\'' +
-                '}';
-    }
 
 }
