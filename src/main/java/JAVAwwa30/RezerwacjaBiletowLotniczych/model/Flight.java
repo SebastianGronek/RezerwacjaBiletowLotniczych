@@ -21,6 +21,7 @@ public class Flight {
     private String startingLocation;
     private String destination;
     private String durationOfFlight;
+    private String dateOfFlight;
 
     @Override
     public String toString() {
@@ -29,6 +30,7 @@ public class Flight {
                 ", startingLocalization='" + startingLocation + '\'' +
                 ", destination='" + destination + '\'' +
                 ", durationOfFlight='" + durationOfFlight + '\'' +
+                ", dateOfFlight='" + dateOfFlight + '\'' +
                 '}';
     }
 }
