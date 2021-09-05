@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -21,7 +22,8 @@ public class FlightController {
     }
 
     @GetMapping("/findFlight/{startingLocalization}/{destination}/{dateOfFlight}")
-    public List<Flight> getFlightsFromOneDestinationToAnotherAfterDate(@PathVariable String startingLocalization, @PathVariable String destination, String dateOfFlight) {
-        return flightService.getFlightsFromOneDestinationToAnotherAfterDate(startingLocalization, destination, dateOfFlight);
+    public List<Flight> getFlightsFromOneDestinationToAnotherAfterDate(@PathVariable String startingLocalization, @PathVariable String destination,@PathVariable String dateOfFlight) {
+        LocalDateTime date = LocalDateTime.parse(dateOfFlight);
+        return flightService.getFlightsFromOneDestinationToAnotherAfterDate(startingLocalization, destination, date);
     }
 }

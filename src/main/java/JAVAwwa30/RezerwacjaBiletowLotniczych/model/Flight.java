@@ -31,14 +31,5 @@ public class Flight {
     private LocalDateTime dateOfFlight;
     @ManyToMany
     private List<User> passengers;
-    @Override
-    public String toString() {
-        return "Flight{" +
-                "id=" + id +
-                ", startingLocalization='" + startingLocation + '\'' +
-                ", destination='" + destination + '\'' +
-                ", durationOfFlight='" + durationOfFlight + '\'' +
-                ", dateOfFlight='" + dateOfFlight + '\'' +
-                '}';
-    }
+
 }
