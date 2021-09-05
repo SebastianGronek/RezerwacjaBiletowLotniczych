@@ -8,16 +8,16 @@ import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
-@Entity(name="users")
+@Entity(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue (strategy = IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long userId;
     private String userFirstName;
     private String userName;
-    private List ticketList;
-    private List archivalTicketList;
+    private List<Flight> ticketList;
+    private List<Flight> archivalTicketList;
 
 
     @Override
