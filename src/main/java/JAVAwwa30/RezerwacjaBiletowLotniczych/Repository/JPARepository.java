@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface JPARepository<U, L extends Number> extends JpaRepository<Flight, Long> {
+public interface JPARepository<Flight, Long> extends JpaRepository<Flight, Long> {
     List<Flight> findFlightByStartingLocationAndDestination(String startingLocation, String destination);
 }
 

@@ -20,5 +20,8 @@ public class FlightController {
         return flightService.getFlightsFromOneDestinationToAnother(startingLocalization, destination);
     }
 
-
+    @GetMapping("/findFlight/{startingLocalization}/{destination}/{dateOfFlight}")
+    public List<Flight> getFlightsFromOneDestinationToAnotherAfterDate(@PathVariable String startingLocalization, @PathVariable String destination, String dateOfFlight) {
+        return flightService.getFlightsFromOneDestinationToAnotherAfterDate(startingLocalization, destination, dateOfFlight);
+    }
 }
