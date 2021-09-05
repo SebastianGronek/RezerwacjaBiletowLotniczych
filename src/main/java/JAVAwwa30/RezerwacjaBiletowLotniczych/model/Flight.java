@@ -18,7 +18,7 @@ public class Flight {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
-    private String startingLocalization;
+    private String startingLocation;
     private String destination;
     private String durationOfFlight;
 
@@ -26,7 +26,7 @@ public class Flight {
     public String toString() {
         return "Flight{" +
                 "id=" + id +
-                ", startingLocalization='" + startingLocalization + '\'' +
+                ", startingLocalization='" + startingLocation + '\'' +
                 ", destination='" + destination + '\'' +
                 ", durationOfFlight='" + durationOfFlight + '\'' +
                 '}';
