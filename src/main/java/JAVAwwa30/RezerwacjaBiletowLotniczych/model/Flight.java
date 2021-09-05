@@ -34,6 +34,7 @@ public class Flight {
                 ", startingLocalization='" + startingLocation + '\'' +
                 ", destination='" + destination + '\'' +
                 ", durationOfFlight='" + durationOfFlight + '\'' +
+                ", dateOfFlight='" + dateOfFlight + '\'' +
                 '}';
     }
 }
