@@ -8,8 +8,10 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -26,8 +28,8 @@ public class Flight {
     private String destination;
     private String durationOfFlight;
     private LocalDateTime dateOfFlight;
-
-
+    @ManyToMany
+    private List<User> passengers;
     @Override
     public String toString() {
         return "Flight{" +
