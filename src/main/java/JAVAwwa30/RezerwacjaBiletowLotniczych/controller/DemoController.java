@@ -19,15 +19,6 @@ public class DemoController {
         return "index";
     }
 
-    @GetMapping("/mockFlight")
-    public String getMockFlight() {
-        StringBuilder stringBuilder = new StringBuilder();
-        List<Flight> flightList = jpaRepository.findAll();
-        for (Flight flight : flightList) {
-            stringBuilder.append(flight);
-        }
-        return stringBuilder.toString();
-    }
 
 
 
