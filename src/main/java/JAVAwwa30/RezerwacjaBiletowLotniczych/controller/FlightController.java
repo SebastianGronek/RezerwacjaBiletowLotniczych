@@ -29,4 +29,9 @@ public class FlightController {
         LocalDateTime date = LocalDateTime.parse(dateOfFlight);
         return flightService.getFlightsFromOneDestinationToAnotherAfterDate(startingLocalization, destination, date);
     }
+
+    @GetMapping("/allFlights")
+    public List<Flight> getAllFlights() {
+        return flightService.findAll();
+    }
 }
