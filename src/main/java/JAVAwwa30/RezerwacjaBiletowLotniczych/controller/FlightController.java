@@ -16,18 +16,9 @@ public class FlightController {
     @Autowired
     FlightService flightService;
 
-    /*@GetMapping("/findFlight")
-    public List<Flight> getEveryFlightFromOneDestinationToAnother(@RequestParam(name="start") String startingLocalization, @RequestParam(name="end") String destination) {
-        return flightService.getFlightsFromOneDestinationToAnother(startingLocalization, destination);
-    }*/
-
     @GetMapping("/findFlight")
     public List<Flight> getFlightsFromOneDestinationToAnotherAfterDate(@RequestParam(name = "start") String startingLocalization, @RequestParam(name = "end") String destination, @RequestParam(name = "time", required = false) String dateOfFlight) {
-        if (dateOfFlight == null) {
-            return flightService.getFlightsFromOneDestinationToAnother(startingLocalization, destination);
-        }
-        LocalDateTime date = LocalDateTime.parse(dateOfFlight);
-        return flightService.getFlightsFromOneDestinationToAnotherAfterDate(startingLocalization, destination, date);
+        return flightService.getFlightsFromOneDestinationToAnotherAfterDate(startingLocalization, destination, dateOfFlight);
     }
 
     @GetMapping("/allFlights")
