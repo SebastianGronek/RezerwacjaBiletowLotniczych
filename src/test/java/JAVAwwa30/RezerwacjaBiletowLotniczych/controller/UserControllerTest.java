@@ -30,7 +30,8 @@ class UserControllerTest {
         when(userRepository.save(userTest)).thenReturn(new User(1L,"Stefan", "Nowak", List.of()));
 
         //when
-        User user = userController.createUser("Stefan", "Nowak");
+        User userToMethod = new User("Stefan", "Nowak");
+        User user = userController.addUser(userToMethod);
 
         //then
         assertNotNull(user.getUserId());
