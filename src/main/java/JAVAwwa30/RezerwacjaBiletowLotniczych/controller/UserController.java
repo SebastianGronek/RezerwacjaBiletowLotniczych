@@ -1,7 +1,6 @@
 package JAVAwwa30.RezerwacjaBiletowLotniczych.controller;
 
-import JAVAwwa30.RezerwacjaBiletowLotniczych.Repository.UserRepository;
-import JAVAwwa30.RezerwacjaBiletowLotniczych.model.Flight;
+import JAVAwwa30.RezerwacjaBiletowLotniczych.repository.UserRepository;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
