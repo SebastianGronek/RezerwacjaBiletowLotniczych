@@ -1,6 +1,6 @@
 package JAVAwwa30.RezerwacjaBiletowLotniczych.service;
 
-import JAVAwwa30.RezerwacjaBiletowLotniczych.Repository.JPARepository;
+import JAVAwwa30.RezerwacjaBiletowLotniczych.repository.JPARepository;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
