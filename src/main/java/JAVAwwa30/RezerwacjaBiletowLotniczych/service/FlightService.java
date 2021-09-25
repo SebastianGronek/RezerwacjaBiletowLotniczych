@@ -14,13 +14,12 @@ public class FlightService {
     @Autowired
     JPARepository jpaRepository;
 
-    public List<Flight> getFlightsFromOneDestinationToAnother(String startingLocalization, String destination) {
-        return jpaRepository.findFlightByStartingLocationAndDestination(startingLocalization, destination);
-    }
-
-
-    public List<Flight> getFlightsFromOneDestinationToAnotherAfterDate(String startingLocalization, String destination, LocalDateTime dateOfFlight) {
-        return getFlightsFromOneDestinationToAnother(startingLocalization, destination).stream().filter(flight -> flight.getDateOfFlight().isAfter(dateOfFlight)).collect(Collectors.toList());
+    public List<Flight> getFlightsFromOneDestinationToAnotherAfterDate(String startingLocalization, String destination, String dateOfFlight) {
+        if (dateOfFlight == null) {
+            return jpaRepository.findFlightByStartingLocationAndDestination(startingLocalization, destination);
+        }
+        LocalDateTime date = LocalDateTime.parse(dateOfFlight);
+        return jpaRepository.findFlightByStartingLocationAndDestination(startingLocalization, destination).stream().filter(flight -> flight.getDateOfFlight().isAfter(date)).collect(Collectors.toList());
     }
 
     public List<Flight> findAll() {
