@@ -1,6 +1,6 @@
 package JAVAwwa30.RezerwacjaBiletowLotniczych.controller;
 
-import JAVAwwa30.RezerwacjaBiletowLotniczych.Repository.UserRepository;
+import JAVAwwa30.RezerwacjaBiletowLotniczych.repository.UserRepository;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.User;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
