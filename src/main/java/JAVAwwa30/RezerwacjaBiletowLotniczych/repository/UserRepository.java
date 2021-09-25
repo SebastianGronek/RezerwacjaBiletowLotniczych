@@ -1,4 +1,4 @@
-package JAVAwwa30.RezerwacjaBiletowLotniczych.Repository;
+package JAVAwwa30.RezerwacjaBiletowLotniczych.repository;
 
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;

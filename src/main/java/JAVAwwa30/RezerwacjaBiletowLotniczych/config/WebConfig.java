@@ -1,4 +1,4 @@
-package JAVAwwa30.RezerwacjaBiletowLotniczych.Config;
+package JAVAwwa30.RezerwacjaBiletowLotniczych.config;
 
 
 import org.springframework.context.annotation.Configuration;
