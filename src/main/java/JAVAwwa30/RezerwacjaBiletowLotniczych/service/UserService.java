@@ -28,9 +28,7 @@ public class UserService {
 
     public Optional<User> deleteUser(long id) {
         Optional<User> user = getUserById(id);
-        if (getUserById(id).isPresent()) {
-            userRepository.delete(getUserById(id).get());
-        }
+        user.ifPresent(value -> userRepository.delete(value));
         return user;
     }
 
