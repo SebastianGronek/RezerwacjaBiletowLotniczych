@@ -1,24 +1,23 @@
 package JAVAwwa30.RezerwacjaBiletowLotniczych.controller;
 
-import JAVAwwa30.RezerwacjaBiletowLotniczych.repository.UserRepository;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.User;
+import JAVAwwa30.RezerwacjaBiletowLotniczych.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
+@RequestMapping("/user")
 public class UserController {
 
     @Autowired
-    UserRepository userRepository;
+    UserService userService;
 
     @PostMapping("/addUser")
     public User addUser(@RequestBody User user) {
-        return userRepository.save(user);
+        return userService.addUser(user);
     }
 
    /* @PostMapping("/createUser")
@@ -28,6 +27,22 @@ public class UserController {
 
     @GetMapping("/allUsers")
     public List<User> getAllUsers() {
-        return userRepository.findAll();
+        return userService.findAll();
     }
+
+    @GetMapping("/{id}")
+    public Optional<User> getUserById(@PathVariable long id) {
+        return userService.getUserById(id);
+    }
+
+    @DeleteMapping("/delete/{id}")
+    public Optional<User> deleteUser(@PathVariable long id) {
+        return userService.deleteUser(id);
+    }
+
+    @PutMapping("update/{id}")
+    public User updateUser(@PathVariable long id, @RequestBody User user) {
+        return userService.updateUser(id, user);
+    }
+
 }
