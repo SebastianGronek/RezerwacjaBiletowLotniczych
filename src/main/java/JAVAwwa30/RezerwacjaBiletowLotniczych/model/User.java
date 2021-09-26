@@ -1,5 +1,6 @@
 package JAVAwwa30.RezerwacjaBiletowLotniczych.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Entity(name="users")
 @Data
+@JsonIgnoreProperties(value= {"ticketList"})
 public class User {
 
     @Id
