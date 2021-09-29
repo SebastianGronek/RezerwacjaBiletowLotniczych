@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,15 +17,17 @@ public class FlightService {
 
     public List<Flight> getFlightsFromOneDestinationToAnotherAfterDate(String startingLocation, String destination, String dateOfFlight) {
         if (!startingLocationValidation(startingLocation)) {
-            throw new IllegalArgumentException("Currently no flights form this starting location");
+            throw new IllegalArgumentException("Currently no flights from this starting location");
         }
         if (!destinationValidation(destination)) {
             throw new IllegalArgumentException("Currently no flights to this destination");
         }
-        if (dateOfFlight == null) {
+        dateOfFlight = dateOfFlight.trim();
+        if (dateOfFlight.isBlank()) {
             return flightRepository.findFlightByStartingLocationAndDestination(startingLocation, destination);
         }
-        LocalDateTime date = LocalDateTime.parse(dateOfFlight);
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_DATE_TIME;
+        LocalDateTime date = LocalDateTime.parse(dateOfFlight, dateTimeFormatter);
         return flightRepository.findFlightByStartingLocationAndDestination(startingLocation, destination).stream().filter(flight -> flight.getDateOfFlight().isAfter(date)).collect(Collectors.toList());
     }
 
