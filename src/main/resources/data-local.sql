@@ -8,8 +8,8 @@ INSERT INTO flight (starting_location, destination, duration_of_flight, date_of_
 VALUES ('Madrid', 'Lisbon', '2', {ts '2021-12-06 05:30:02.00'});
 INSERT INTO flight (starting_location, destination, duration_of_flight, date_of_flight)
 VALUES ('London', 'Oslo', '3', {ts '2021-12-06 15:55:00.00'});
-INSERT INTO users (user_first_name, user_name) VALUES ('Anna', 'Abacka');
-INSERT INTO users (user_first_name, user_name) VALUES ('Bartek', 'Babacki');
-INSERT INTO users (user_first_name, user_name) VALUES ('Cecylia', 'Cabacka');
-INSERT INTO users (user_first_name, user_name) VALUES ('Damian', 'Dabacki');
-INSERT INTO users (user_first_name, user_name) VALUES ('Emilia', 'Ebacka');
+INSERT INTO users (user_first_name, user_last_name) VALUES ('Anna', 'Abacka');
+INSERT INTO users (user_first_name, user_last_name) VALUES ('Bartek', 'Babacki');
+INSERT INTO users (user_first_name, user_last_name) VALUES ('Cecylia', 'Cabacka');
+INSERT INTO users (user_first_name, user_last_name) VALUES ('Damian', 'Dabacki');
+INSERT INTO users (user_first_name, user_last_name) VALUES ('Emilia', 'Ebacka');

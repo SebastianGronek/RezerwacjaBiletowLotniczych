@@ -26,11 +26,11 @@ class UserControllerTest {
     @Test
     void shouldCreateNewUser() {
         //given
-        User userTest = new User("Stefan", "Nowak");
-        when(userRepository.save(userTest)).thenReturn(new User(1L,"Stefan", "Nowak", List.of()));
+        User userTest = new User("Stefan", "Nowak", "StefanNOWAK");
+        when(userRepository.save(userTest)).thenReturn(new User(1L,"Stefan", "Nowak", "StefanNOWAK", List.of()));
 
         //when
-        User userToMethod = new User("Stefan", "Nowak");
+        User userToMethod = new User("Stefan", "Nowak", "StefanNOWAK");
         User user = userController.addUser(userToMethod);
 
         //then
