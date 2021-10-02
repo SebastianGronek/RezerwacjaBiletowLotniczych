@@ -15,7 +15,6 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
     UserService userService;
 
     @PostMapping("/addUser")

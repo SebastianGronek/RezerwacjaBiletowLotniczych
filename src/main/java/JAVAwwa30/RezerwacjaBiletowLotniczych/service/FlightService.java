@@ -90,9 +90,9 @@ public class FlightService {
         if (!destinationValidation(destination)) {
             throw new InvalidLocationException("Currently no flights to this destination");
         }
-        if (dateOfFlight.isBefore(LocalDateTime.now())) {
+       /* if (dateOfFlight.isBefore(LocalDateTime.now())) {
             throw new InvalidDateOfFlightException("You cannot select past date for your flight");
-        }
+        }*/
         return true;
     }
 
