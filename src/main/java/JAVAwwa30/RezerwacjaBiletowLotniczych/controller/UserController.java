@@ -19,13 +19,9 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/addUser")
-    public User addUser(@RequestBody User user) {
-        try {
-            return userService.addUser(user);
-        } catch (IllegalArgumentException | InvalidLoginException e) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Invalid input", e);
-        }
+    public User addUser(@RequestBody User user) throws InvalidLoginException {
+        return userService.addUser(user);
+
     }
 
     @GetMapping("/allUsers")

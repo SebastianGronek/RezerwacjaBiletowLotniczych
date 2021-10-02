@@ -4,7 +4,7 @@ import JAVAwwa30.RezerwacjaBiletowLotniczych.errors.InvalidDateOfFlightException
 import JAVAwwa30.RezerwacjaBiletowLotniczych.errors.InvalidLocationException;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.repository.FlightRepository;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.Flight;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
@@ -14,9 +14,12 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@RequiredArgsConstructor
 public class FlightService {
-    @Autowired
-    FlightRepository flightRepository;
+
+    private final FlightRepository flightRepository;
+
+
 
     public List<Flight> getFlightsFromOneDestinationToAnotherAfterDate(String startingLocation, String destination, String dateOfFlight) throws InvalidLocationException, InvalidDateOfFlightException {
         dateOfFlight = dateOfFlight.trim();
