@@ -14,10 +14,10 @@ public class FlightImporter {
 
     private final FlightRepository flightRepository;
 
-    @Scheduled(fixedDelay = 84_000_000)
+    @Scheduled(cron = "0 0 13 * * ?")
 
     private void importFlightsFromExternalAPI() {
-        String uri = "";
+        String uri = "/states/all";
         FlightDTO[] flightDTO = restTemplate.getForObject(uri, FlightDTO[].class);
 
     }
