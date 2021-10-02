@@ -1,5 +1,6 @@
 package JAVAwwa30.RezerwacjaBiletowLotniczych.controller;
 
+import JAVAwwa30.RezerwacjaBiletowLotniczych.errors.InvalidLoginException;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.User;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,16 +22,11 @@ public class UserController {
     public User addUser(@RequestBody User user) {
         try {
             return userService.addUser(user);
-        } catch (IllegalArgumentException e) {
+        } catch (IllegalArgumentException | InvalidLoginException e) {
             throw new ResponseStatusException(
                     HttpStatus.BAD_REQUEST, "Invalid input", e);
         }
     }
-
-   /* @PostMapping("/createUser")
-    public User createUser(String userFirstName, String userName) {
-        return addUser(new User(userFirstName, userName));
-    }*/
 
     @GetMapping("/allUsers")
     public List<User> getAllUsers() {
@@ -48,7 +44,7 @@ public class UserController {
     }
 
     @PutMapping("update/{id}")
-    public User updateUser(@PathVariable long id, @RequestBody User user) {
+    public User updateUser(@PathVariable long id, @RequestBody User user) throws InvalidLoginException {
         return userService.updateUser(id, user);
     }
 
