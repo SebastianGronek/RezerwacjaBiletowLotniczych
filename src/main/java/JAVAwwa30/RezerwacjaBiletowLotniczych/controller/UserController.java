@@ -3,7 +3,9 @@ package JAVAwwa30.RezerwacjaBiletowLotniczych.controller;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.User;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -17,7 +19,12 @@ public class UserController {
 
     @PostMapping("/addUser")
     public User addUser(@RequestBody User user) {
-        return userService.addUser(user);
+        try {
+            return userService.addUser(user);
+        } catch (IllegalArgumentException e) {
+            throw new ResponseStatusException(
+                    HttpStatus.BAD_REQUEST, "Invalid input", e);
+        }
     }
 
    /* @PostMapping("/createUser")

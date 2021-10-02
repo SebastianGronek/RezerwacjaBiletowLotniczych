@@ -25,13 +25,15 @@ public class User {
     @GeneratedValue (strategy = IDENTITY)
     private Long userId;
     private String userFirstName;
-    private String userName;
+    private String userLastName;
+    private String login;
     @ManyToMany
     private List <Flight> ticketList;
 
 
-    public User(String userFirstName, String userName) {
+    public User(String userFirstName, String userLastName, String login) {
         this.userFirstName = userFirstName;
-        this.userName = userName;
+        this.userLastName = userLastName;
+        this.login = login;
     }
 }
