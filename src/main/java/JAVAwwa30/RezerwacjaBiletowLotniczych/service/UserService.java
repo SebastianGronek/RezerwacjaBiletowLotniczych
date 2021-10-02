@@ -23,6 +23,9 @@ public class UserService {
     }
 
     public User addUser(User user) {
+        if (loginValidation(user.getLogin())) {
+            throw new IllegalArgumentException("Login unavailable. Please choose another login");
+        }
         return userRepository.save(user);
     }
 
@@ -41,10 +44,20 @@ public class UserService {
         if (!user.getUserFirstName().equals(presentUser.getUserFirstName())) {
             presentUser.setUserFirstName(user.getUserFirstName());
         }
-        if (!user.getUserName().equals(presentUser.getUserName())) {
-            presentUser.setUserName(user.getUserName());
+        if (!user.getUserLastName().equals(presentUser.getUserLastName())) {
+            presentUser.setUserLastName(user.getUserLastName());
+        }
+        if (!user.getLogin().equals(presentUser.getLogin())) {
+            if (loginValidation(user.getLogin())) {
+                throw new IllegalArgumentException("Login unavailable. Please choose another login");
+            }
+            presentUser.setLogin(user.getLogin());
         }
         return addUser(presentUser);
     }
 
+    private boolean loginValidation(String login) {
+        List<String> logins = userRepository.findLogin();
+        return logins.contains(login);
+    }
 }

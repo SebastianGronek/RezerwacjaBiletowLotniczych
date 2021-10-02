@@ -3,10 +3,12 @@ package JAVAwwa30.RezerwacjaBiletowLotniczych.service;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.repository.FlightRepository;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.Flight;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cglib.core.Local;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,19 +18,55 @@ public class FlightService {
     FlightRepository flightRepository;
 
     public List<Flight> getFlightsFromOneDestinationToAnotherAfterDate(String startingLocation, String destination, String dateOfFlight) {
-        if (!startingLocationValidation(startingLocation)) {
-            throw new IllegalArgumentException("Currently no flights from this starting location");
-        }
-        if (!destinationValidation(destination)) {
-            throw new IllegalArgumentException("Currently no flights to this destination");
-        }
         dateOfFlight = dateOfFlight.trim();
+        LocalDateTime date;
         if (dateOfFlight.isBlank()) {
-            return flightRepository.findFlightByStartingLocationAndDestination(startingLocation, destination);
+            date = LocalDateTime.now();
+        } else {
+            date = LocalDateTime.parse(dateOfFlight, DateTimeFormatter.ISO_DATE_TIME);
         }
-        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ISO_DATE_TIME;
-        LocalDateTime date = LocalDateTime.parse(dateOfFlight, dateTimeFormatter);
+        flightValidation(startingLocation, destination, date);
         return flightRepository.findFlightByStartingLocationAndDestination(startingLocation, destination).stream().filter(flight -> flight.getDateOfFlight().isAfter(date)).collect(Collectors.toList());
+    }
+
+    public List<Flight> findAll() {
+        return flightRepository.findAll();
+    }
+
+    private List<Flight> findAllFlightsFromStartingLocation(String startingLocation, LocalDateTime dateOfFlight) {
+        return flightRepository.findAllByStartingLocationAndDateOfFlightIsAfter(startingLocation, dateOfFlight);
+    }
+
+    private List<Flight> findAllFlightsToDestination(String destination, LocalDateTime dateOfFlight) {
+        return flightRepository.findAllByDestinationAndDateOfFlightIsAfter(destination, dateOfFlight);
+    }
+
+    public List<List<Flight>> getFlightsWithConnectingFlight(String startingLocation, String destination, String dateOfFlight) {
+        LocalDateTime date = LocalDateTime.parse(dateOfFlight, DateTimeFormatter.ISO_DATE_TIME);
+        flightValidation(startingLocation, destination, date);
+        List<Flight> flightsFromStartingLocation = findAllFlightsFromStartingLocation(startingLocation, date);
+        List<Flight> flightsToDestination = findAllFlightsToDestination(destination, date);
+        List<List<Flight>> result = new ArrayList<>();
+        for (Flight flightFromStartingLocation : flightsFromStartingLocation) {
+            String destinationOfCheckedFlight = flightFromStartingLocation.getDestination();
+            for (Flight potentialConnectingFlight : flightsToDestination) {
+                if (destinationOfCheckedFlight.equals(potentialConnectingFlight.getStartingLocation()) && doesOneFlightArriveBeforeAnotherDepart(flightFromStartingLocation, potentialConnectingFlight)) {
+                    List<Flight> connectedFlight = new ArrayList<>();
+                    connectedFlight.add(flightFromStartingLocation);
+                    connectedFlight.add(potentialConnectingFlight);
+                    result.add(connectedFlight);
+                }
+            }
+        }
+        return result;
+    }
+
+    private boolean doesOneFlightArriveBeforeAnotherDepart(Flight firstFlight, Flight secondFlight) {
+        return timeOfArrival(firstFlight).isBefore(secondFlight.getDateOfFlight());
+    }
+
+    private LocalDateTime timeOfArrival(Flight flight) {
+        return flight.getDateOfFlight().plusHours(Long.parseLong(flight.getDurationOfFlight()));
     }
 
     private boolean startingLocationValidation(String location) {
@@ -41,7 +79,17 @@ public class FlightService {
         return locations.contains(location);
     }
 
-    public List<Flight> findAll() {
-        return flightRepository.findAll();
+    private boolean flightValidation(String startingLocation, String destination, LocalDateTime dateOfFlight) {
+        if (!startingLocationValidation(startingLocation)) {
+            throw new IllegalArgumentException("Currently no flights from this starting location");
+        }
+        if (!destinationValidation(destination)) {
+            throw new IllegalArgumentException("Currently no flights to this destination");
+        }
+        if (dateOfFlight.isBefore(LocalDateTime.now())) {
+            throw new IllegalArgumentException("You cannot select past date for your flight");
+        }
+        return true;
     }
+
 }
