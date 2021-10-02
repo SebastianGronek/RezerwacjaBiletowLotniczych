@@ -29,14 +29,12 @@ public class Flight {
     private String destination;
     private String durationOfFlight;
     private LocalDateTime dateOfFlight;
-    @ManyToMany
-    private List<User> passengers;
 
-    public Flight(String startingLocation, String destination, String durationOfFlight, LocalDateTime dateOfFlight, List<User> passengers) {
+
+    public Flight(String startingLocation, String destination, String durationOfFlight, LocalDateTime dateOfFlight) {
         this.startingLocation = startingLocation;
         this.destination = destination;
         this.durationOfFlight = durationOfFlight;
         this.dateOfFlight = dateOfFlight;
-        this.passengers = passengers;
     }
 }

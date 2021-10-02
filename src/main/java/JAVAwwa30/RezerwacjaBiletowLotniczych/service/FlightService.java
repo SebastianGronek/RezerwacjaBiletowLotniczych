@@ -2,6 +2,7 @@ package JAVAwwa30.RezerwacjaBiletowLotniczych.service;
 
 import JAVAwwa30.RezerwacjaBiletowLotniczych.errors.InvalidDateOfFlightException;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.errors.InvalidLocationException;
+import JAVAwwa30.RezerwacjaBiletowLotniczych.model.Ticket;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.repository.FlightRepository;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.Flight;
 import lombok.RequiredArgsConstructor;
@@ -18,7 +19,6 @@ import java.util.stream.Collectors;
 public class FlightService {
 
     private final FlightRepository flightRepository;
-
 
 
     public List<Flight> getFlightsFromOneDestinationToAnotherAfterDate(String startingLocation, String destination, String dateOfFlight) throws InvalidLocationException, InvalidDateOfFlightException {
@@ -45,24 +45,32 @@ public class FlightService {
         return flightRepository.findAllByDestinationAndDateOfFlightIsAfter(destination, dateOfFlight);
     }
 
-    public List<List<Flight>> getFlightsWithConnectingFlight(String startingLocation, String destination, String dateOfFlight) throws InvalidLocationException, InvalidDateOfFlightException {
+    public List<Ticket> getFlightsWithConnectingFlight(String startingLocation, String destination, String dateOfFlight) throws InvalidLocationException, InvalidDateOfFlightException {
         LocalDateTime date = LocalDateTime.parse(dateOfFlight, DateTimeFormatter.ISO_DATE_TIME);
         flightValidation(startingLocation, destination, date);
         List<Flight> flightsFromStartingLocation = findAllFlightsFromStartingLocation(startingLocation, date);
         List<Flight> flightsToDestination = findAllFlightsToDestination(destination, date);
-        List<List<Flight>> result = new ArrayList<>();
-        for (Flight flightFromStartingLocation : flightsFromStartingLocation) {
-            String destinationOfCheckedFlight = flightFromStartingLocation.getDestination();
-            for (Flight potentialConnectingFlight : flightsToDestination) {
-                if (destinationOfCheckedFlight.equals(potentialConnectingFlight.getStartingLocation()) && doesOneFlightArriveBeforeAnotherDepart(flightFromStartingLocation, potentialConnectingFlight)) {
-                    List<Flight> connectedFlight = new ArrayList<>();
-                    connectedFlight.add(flightFromStartingLocation);
-                    connectedFlight.add(potentialConnectingFlight);
-                    result.add(connectedFlight);
+        List<Ticket> result = new ArrayList<>();
+        for (Flight flightFrom : flightsFromStartingLocation) {
+            for (Flight flightTo : flightsToDestination) {
+                if (checkPotentialConnectingFlight(flightFrom, flightTo)) {
+                    Ticket ticket = addFlightsToTicket(flightFrom, flightTo);
+                    result.add(ticket);
                 }
             }
         }
         return result;
+    }
+
+    private boolean checkPotentialConnectingFlight(Flight flightFromStartingLocation, Flight checkedFlight) {
+        return flightFromStartingLocation.getDestination().equals(checkedFlight.getStartingLocation()) && doesOneFlightArriveBeforeAnotherDepart(flightFromStartingLocation, checkedFlight);
+    }
+
+    private Ticket addFlightsToTicket(Flight flightFromStartingLocation, Flight potentialConnectingFlight) {
+        Ticket connectedFlight = new Ticket();
+        connectedFlight.getFlightsOnTicket().add(flightFromStartingLocation);
+        connectedFlight.getFlightsOnTicket().add(potentialConnectingFlight);
+        return connectedFlight;
     }
 
     private boolean doesOneFlightArriveBeforeAnotherDepart(Flight firstFlight, Flight secondFlight) {

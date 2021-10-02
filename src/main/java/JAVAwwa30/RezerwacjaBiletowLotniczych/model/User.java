@@ -5,10 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 
 import java.util.List;
 
@@ -27,8 +24,8 @@ public class User {
     private String userFirstName;
     private String userLastName;
     private String login;
-    @ManyToMany
-    private List <Flight> ticketList;
+    @OneToMany
+    private List <Ticket> ticketList;
 
 
     public User(String userFirstName, String userLastName, String login) {
