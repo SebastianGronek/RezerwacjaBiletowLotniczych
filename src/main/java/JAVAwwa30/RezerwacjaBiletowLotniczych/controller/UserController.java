@@ -27,11 +27,6 @@ public class UserController {
         }
     }
 
-   /* @PostMapping("/createUser")
-    public User createUser(String userFirstName, String userName) {
-        return addUser(new User(userFirstName, userName));
-    }*/
-
     @GetMapping("/allUsers")
     public List<User> getAllUsers() {
         return userService.findAll();
