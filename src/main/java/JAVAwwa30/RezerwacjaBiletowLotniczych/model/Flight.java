@@ -8,11 +8,7 @@ import lombok.NoArgsConstructor;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-
 import java.time.LocalDateTime;
-import java.util.List;
-
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -28,8 +24,15 @@ public class Flight {
     private String startingLocation;
     private String destination;
     private String durationOfFlight;
-    private LocalDateTime dateOfFlight;
-    @ManyToMany
-    private List<User> passengers;
+    private LocalDateTime dateOfDeparture;
+    private LocalDateTime dateOfArrival;
 
+
+    public Flight(String startingLocation, String destination, String durationOfFlight, LocalDateTime dateOfDeparture, LocalDateTime dateOfArrival) {
+        this.startingLocation = startingLocation;
+        this.destination = destination;
+        this.durationOfFlight = durationOfFlight;
+        this.dateOfDeparture = dateOfDeparture;
+        this.dateOfArrival = dateOfArrival;
+    }
 }

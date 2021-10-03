@@ -1,5 +1,6 @@
 package JAVAwwa30.RezerwacjaBiletowLotniczych.controller;
 
+import JAVAwwa30.RezerwacjaBiletowLotniczych.errors.InvalidLoginException;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.repository.UserRepository;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.User;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.service.UserService;
@@ -19,6 +20,7 @@ class UserControllerTest {
     UserRepository userRepository = Mockito.mock(UserRepository.class);
 
     UserService userService = new UserService(userRepository);
+
 
     @Test
     void shouldAddNewUser() {
@@ -44,3 +46,4 @@ class UserControllerTest {
 
 
 }
+

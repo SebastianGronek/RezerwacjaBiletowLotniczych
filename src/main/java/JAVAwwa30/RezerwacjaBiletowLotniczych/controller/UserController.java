@@ -15,17 +15,12 @@ import java.util.Optional;
 @RequestMapping("/user")
 public class UserController {
 
-    @Autowired
     UserService userService;
 
     @PostMapping("/addUser")
     public User addUser(@RequestBody User user) {
-        try {
-            return userService.addUser(user);
-        } catch (IllegalArgumentException | InvalidLoginException e) {
-            throw new ResponseStatusException(
-                    HttpStatus.BAD_REQUEST, "Invalid input", e);
-        }
+        return userService.addUser(user);
+
     }
 
     @GetMapping("/allUsers")
@@ -44,7 +39,7 @@ public class UserController {
     }
 
     @PutMapping("update/{id}")
-    public User updateUser(@PathVariable long id, @RequestBody User user) throws InvalidLoginException {
+    public User updateUser(@PathVariable long id, @RequestBody User user)  {
         return userService.updateUser(id, user);
     }
 
