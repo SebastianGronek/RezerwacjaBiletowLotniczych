@@ -18,7 +18,7 @@ public class UserController {
     UserService userService;
 
     @PostMapping("/addUser")
-    public User addUser(@RequestBody User user) throws InvalidLoginException {
+    public User addUser(@RequestBody User user) {
         return userService.addUser(user);
 
     }
@@ -39,7 +39,7 @@ public class UserController {
     }
 
     @PutMapping("update/{id}")
-    public User updateUser(@PathVariable long id, @RequestBody User user) throws InvalidLoginException {
+    public User updateUser(@PathVariable long id, @RequestBody User user)  {
         return userService.updateUser(id, user);
     }
 

@@ -2,7 +2,6 @@ package JAVAwwa30.RezerwacjaBiletowLotniczych.service;
 
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.Flight;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.FlightDTO;
-import JAVAwwa30.RezerwacjaBiletowLotniczych.model.User;
 import lombok.RequiredArgsConstructor;
 
 import java.time.LocalDateTime;

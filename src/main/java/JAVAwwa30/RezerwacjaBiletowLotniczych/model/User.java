@@ -15,7 +15,7 @@ import static javax.persistence.GenerationType.IDENTITY;
 @NoArgsConstructor
 @Entity(name="users")
 @Data
-@JsonIgnoreProperties(value= {"ticketList"})
+//@JsonIgnoreProperties(value= {"ticketList"})
 public class User {
 
     @Id
