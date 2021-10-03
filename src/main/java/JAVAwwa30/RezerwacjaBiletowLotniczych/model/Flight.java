@@ -24,13 +24,15 @@ public class Flight {
     private String startingLocation;
     private String destination;
     private String durationOfFlight;
-    private LocalDateTime dateOfFlight;
+    private LocalDateTime dateOfDeparture;
+    private LocalDateTime dateOfArrival;
 
 
-    public Flight(String startingLocation, String destination, String durationOfFlight, LocalDateTime dateOfFlight) {
+    public Flight(String startingLocation, String destination, String durationOfFlight, LocalDateTime dateOfDeparture, LocalDateTime dateOfArrival) {
         this.startingLocation = startingLocation;
         this.destination = destination;
         this.durationOfFlight = durationOfFlight;
-        this.dateOfFlight = dateOfFlight;
+        this.dateOfDeparture = dateOfDeparture;
+        this.dateOfArrival = dateOfArrival;
     }
 }

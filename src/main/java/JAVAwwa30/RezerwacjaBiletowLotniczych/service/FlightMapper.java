@@ -26,14 +26,13 @@ public class FlightMapper {
     public Flight convertDataToFlight(FlightDTO.Data data) {
         String departureAirport = data.getDeparture().getAirport();
         String arrivalAirport = data.getArrival().getAirport();
-        String duration = calculateDuration(data);
-        LocalDateTime departureTime = LocalDateTime.parse(data.getDeparture().getScheduled(), DateTimeFormatter.ISO_DATE_TIME);
-        return new Flight(departureAirport, arrivalAirport, duration, departureTime);
-    }
-
-    private String calculateDuration(FlightDTO.Data data) {
         LocalDateTime departureTime = LocalDateTime.parse(data.getDeparture().getScheduled(), DateTimeFormatter.ISO_DATE_TIME);
         LocalDateTime arrivalTime = LocalDateTime.parse(data.getArrival().getScheduled(), DateTimeFormatter.ISO_DATE_TIME);
-        return Long.toString(ChronoUnit.HOURS.between(arrivalTime, departureTime));
+        String duration = calculateDuration(arrivalTime, departureTime);
+        return new Flight(departureAirport, arrivalAirport, duration, departureTime, arrivalTime);
+    }
+
+    private String calculateDuration(LocalDateTime arrivalTime, LocalDateTime departureTime) {
+        return Long.toString(ChronoUnit.HOURS.between(departureTime, arrivalTime));
     }
 }
