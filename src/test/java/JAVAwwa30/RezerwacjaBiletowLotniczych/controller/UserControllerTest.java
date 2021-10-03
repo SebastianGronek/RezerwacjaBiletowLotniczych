@@ -25,12 +25,12 @@ class UserControllerTest {
     @Test
     void shouldAddNewUser() {
         //given
-        User testUser = new User("Karol", "Kowalski", "KK", List.of());
-        when(userRepository.save(testUser)).thenReturn(new User(1L,"Karol", "Kowalski", "KK", List.of()));
+        User testUser = new User("Karol", "Kowalski", "KK");
+        when(userRepository.save(testUser)).thenReturn(new User(1L,"Karol", "Kowalski", "KK"));
 
         //when
         when(userRepository.findLogin()).thenReturn(List.of("KOK"));
-        User user = userService.addUser(new User("Karol", "Kowalski", "KK", List.of()));
+        User user = userService.addUser(new User("Karol", "Kowalski", "KK"));
 
         //then
         assertNotNull(user.getUserId());

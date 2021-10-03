@@ -12,24 +12,22 @@ import static javax.persistence.GenerationType.IDENTITY;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name="users")
+@Entity(name = "users")
 @Data
 //@JsonIgnoreProperties(value= {"ticketList"})
 public class User {
 
     @Id
-    @GeneratedValue (strategy = IDENTITY)
+    @GeneratedValue(strategy = IDENTITY)
     private Long userId;
     private String userFirstName;
     private String userLastName;
     private String login;
 
 
-
-    public User(String userFirstName, String userLastName, String login, List<Flight>  ticketList) {
+    public User(String userFirstName, String userLastName, String login) {
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.login = login;
-        this.ticketList = ticketList;
     }
 }

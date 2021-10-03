@@ -33,6 +33,6 @@ public class FlightMapper {
     }
 
     private String calculateDuration(LocalDateTime arrivalTime, LocalDateTime departureTime) {
-        return Long.toString(ChronoUnit.HOURS.between(departureTime, arrivalTime));
+        return Long.toString(ChronoUnit.MINUTES.between(departureTime, arrivalTime));
     }
 }
