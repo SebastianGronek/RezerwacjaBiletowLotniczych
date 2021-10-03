@@ -9,3 +9,4 @@ public class InvalidLocationException extends RuntimeException{
         super(message);
     }
 }
+

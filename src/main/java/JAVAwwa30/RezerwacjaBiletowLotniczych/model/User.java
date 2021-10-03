@@ -26,9 +26,10 @@ public class User {
 
 
 
-    public User(String userFirstName, String userLastName, String login) {
+    public User(String userFirstName, String userLastName, String login, List<Flight>  ticketList) {
         this.userFirstName = userFirstName;
         this.userLastName = userLastName;
         this.login = login;
+        this.ticketList = ticketList;
     }
 }
