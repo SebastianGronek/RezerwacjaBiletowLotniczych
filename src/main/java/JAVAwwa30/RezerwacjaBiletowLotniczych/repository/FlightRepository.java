@@ -14,6 +14,7 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
 
     List<Flight> findAllByDestinationAndDateOfFlightIsAfter(String destination, LocalDateTime dateOfFlight);
 
+    List<Flight> deleteAllByDateOfFlightBefore(LocalDateTime dateOfFlight);
 
     @Query("SELECT DISTINCT startingLocation FROM Flight")
     List<String> findDistinctStartingLocation();

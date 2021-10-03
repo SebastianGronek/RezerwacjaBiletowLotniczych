@@ -3,7 +3,6 @@ package JAVAwwa30.RezerwacjaBiletowLotniczych.model;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.persistence.*;
 import java.util.List;
@@ -19,6 +18,7 @@ public class Ticket {
     @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
+    @ManyToOne
     private User owner;
 
     @OneToMany

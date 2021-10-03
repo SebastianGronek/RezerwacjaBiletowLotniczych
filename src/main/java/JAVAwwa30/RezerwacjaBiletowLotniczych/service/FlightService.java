@@ -21,7 +21,7 @@ public class FlightService {
     private final FlightRepository flightRepository;
 
 
-    public List<Flight> getFlightsFromOneDestinationToAnotherAfterDate(String startingLocation, String destination, String dateOfFlight) throws InvalidLocationException, InvalidDateOfFlightException {
+    public List<Flight> getFlightsFromOneDestinationToAnotherAfterDate(String startingLocation, String destination, String dateOfFlight) {
         dateOfFlight = dateOfFlight.trim();
         LocalDateTime date;
         if (dateOfFlight.isBlank()) {
@@ -45,7 +45,7 @@ public class FlightService {
         return flightRepository.findAllByDestinationAndDateOfFlightIsAfter(destination, dateOfFlight);
     }
 
-    public List<Ticket> getFlightsWithConnectingFlight(String startingLocation, String destination, String dateOfFlight) throws InvalidLocationException, InvalidDateOfFlightException {
+    public List<Ticket> getFlightsWithConnectingFlight(String startingLocation, String destination, String dateOfFlight) {
         LocalDateTime date = LocalDateTime.parse(dateOfFlight, DateTimeFormatter.ISO_DATE_TIME);
         flightValidation(startingLocation, destination, date);
         List<Flight> flightsFromStartingLocation = findAllFlightsFromStartingLocation(startingLocation, date);
@@ -91,7 +91,7 @@ public class FlightService {
         return locations.contains(location);
     }
 
-    private boolean flightValidation(String startingLocation, String destination, LocalDateTime dateOfFlight) throws InvalidLocationException, InvalidDateOfFlightException {
+    private void flightValidation(String startingLocation, String destination, LocalDateTime dateOfFlight)  {
         if (!startingLocationValidation(startingLocation)) {
             throw new InvalidLocationException("Currently no flights from this starting location");
         }
@@ -101,7 +101,6 @@ public class FlightService {
        /* if (dateOfFlight.isBefore(LocalDateTime.now())) {
             throw new InvalidDateOfFlightException("You cannot select past date for your flight");
         }*/
-        return true;
     }
 
 }
