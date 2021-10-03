@@ -3,6 +3,7 @@ package JAVAwwa30.RezerwacjaBiletowLotniczych.controller;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.errors.InvalidLoginException;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.User;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -13,14 +14,14 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/user")
+@RequiredArgsConstructor
 public class UserController {
 
-    UserService userService;
+    private final UserService userService;
 
     @PostMapping("/addUser")
     public User addUser(@RequestBody User user) {
         return userService.addUser(user);
-
     }
 
     @GetMapping("/allUsers")
@@ -39,7 +40,7 @@ public class UserController {
     }
 
     @PutMapping("update/{id}")
-    public User updateUser(@PathVariable long id, @RequestBody User user)  {
+    public User updateUser(@PathVariable long id, @RequestBody User user) {
         return userService.updateUser(id, user);
     }
 

@@ -24,6 +24,10 @@ public class User {
     private String userLastName;
     private String login;
 
+    public User(String userFirstName, String userLastName) {
+        this.userFirstName = userFirstName;
+        this.userLastName = userLastName;
+    }
 
     public User(String userFirstName, String userLastName, String login) {
         this.userFirstName = userFirstName;
