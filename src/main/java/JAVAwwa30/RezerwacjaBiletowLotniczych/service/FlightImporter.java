@@ -39,7 +39,7 @@ public class FlightImporter {
 
     @Scheduled(cron = "0 0 0 20 * ?")
     public void deleteOldestDataFromDatabase() {
-//        flightRepository.deleteAllByDateOfFlightBefore(LocalDateTime.now().plusHours(5));
-        flightRepository.deleteAllByDateOfFlightBefore(LocalDateTime.now().minusMonths(1));
+//        flightRepository.deleteAllByDateOfFlightBefore(LocalDateTime.now().plusHours(5)); //for testing purpose
+        flightRepository.deleteAllByDateOfDepartureBefore(LocalDateTime.now().minusMonths(1));
     }
 }
