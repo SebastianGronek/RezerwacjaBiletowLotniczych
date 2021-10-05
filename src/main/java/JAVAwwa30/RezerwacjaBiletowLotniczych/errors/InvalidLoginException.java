@@ -4,7 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
 
-@ResponseStatus(code = HttpStatus.BAD_REQUEST, reason = "Invalid login")
+@ResponseStatus(code = HttpStatus.BAD_REQUEST)
 public class InvalidLoginException extends RuntimeException{
 
     public InvalidLoginException(String message) {
