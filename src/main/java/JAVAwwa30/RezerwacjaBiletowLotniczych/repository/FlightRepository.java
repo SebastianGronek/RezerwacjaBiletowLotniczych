@@ -18,10 +18,10 @@ public interface FlightRepository extends JpaRepository<Flight, Long> {
     List<Flight> deleteAllByDateOfDepartureBefore(LocalDateTime dateOfDeparture);
 
 
-    @Query("SELECT DISTINCT startingLocation FROM Flight where startingLocation like :input%" )
+    @Query("SELECT DISTINCT startingLocation FROM Flight where upper(startingLocation) like :input%" )
     List<String> findDistinctStartingLocationStartingWithInput(@Param("input") String input);
 
-    @Query("SELECT DISTINCT destination FROM Flight where destination like :input%" )
+    @Query("SELECT DISTINCT destination FROM Flight where UPPER(destination) like :input%" )
     List<String> findDistinctDestinationStartingWithInput(@Param("input") String input);
 
     @Query("SELECT DISTINCT startingLocation FROM Flight")

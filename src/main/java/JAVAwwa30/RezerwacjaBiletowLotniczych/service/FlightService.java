@@ -102,11 +102,11 @@ public class FlightService {
     }
 
     public List<String> findStartingLocationForAutocomplete(String input) {
-        return flightRepository.findDistinctStartingLocationStartingWithInput(input);
+        return flightRepository.findDistinctStartingLocationStartingWithInput(input.toUpperCase().stripLeading());
     }
 
     public List<String> findDestinationForAutocomplete(String input) {
-        return flightRepository.findDistinctDestinationStartingWithInput(input);
+        return flightRepository.findDistinctDestinationStartingWithInput(input.toUpperCase().stripLeading());
     }
 
 }
