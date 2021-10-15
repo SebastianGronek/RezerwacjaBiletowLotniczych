@@ -1,6 +1,5 @@
 package JAVAwwa30.RezerwacjaBiletowLotniczych.controller;
 
-import JAVAwwa30.RezerwacjaBiletowLotniczych.errors.InvalidLoginException;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.repository.UserRepository;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.User;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.service.UserService;
@@ -29,7 +28,7 @@ class UserControllerTest {
         when(userRepository.save(testUser)).thenReturn(new User(1L,"Karol", "Kowalski", "KK"));
 
         //when
-        when(userRepository.findLogin()).thenReturn(List.of("KOK"));
+        when(userRepository.findAllLogins()).thenReturn(List.of("KOK"));
         User user = userService.addUser(new User("Karol", "Kowalski", "KK"));
 
         //then

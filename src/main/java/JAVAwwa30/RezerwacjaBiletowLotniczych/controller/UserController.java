@@ -1,13 +1,10 @@
 package JAVAwwa30.RezerwacjaBiletowLotniczych.controller;
 
-import JAVAwwa30.RezerwacjaBiletowLotniczych.errors.InvalidLoginException;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.User;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,6 +22,7 @@ public class UserController {
     }
 
     @GetMapping("/allUsers")
+    @PreAuthorize("hasRole('MODERATOR') or hasRole('ADMIN')")
     public List<User> getAllUsers() {
         return userService.findAll();
     }

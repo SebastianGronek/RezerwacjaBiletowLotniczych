@@ -1,6 +1,6 @@
 package JAVAwwa30.RezerwacjaBiletowLotniczych.service;
 
-import JAVAwwa30.RezerwacjaBiletowLotniczych.errors.InvalidLoginException;
+import JAVAwwa30.RezerwacjaBiletowLotniczych.errors.InvalidInputException;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.model.User;
 import JAVAwwa30.RezerwacjaBiletowLotniczych.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,9 +27,9 @@ public class UserService {
         return userRepository.findAll();
     }
 
-    public User addUser(User user) throws InvalidLoginException {
+    public User addUser(User user) throws InvalidInputException {
         if (loginValidation(user.getLogin())) {
-            throw new InvalidLoginException("Login unavailable. Please choose another login");
+            throw new InvalidInputException("Login unavailable. Please choose another login");
         }
         return userRepository.save(user);
     }
@@ -40,7 +40,7 @@ public class UserService {
         return user;
     }
 
-    public User updateUser(long id, User user) throws InvalidLoginException {
+    public User updateUser(long id, User user) throws InvalidInputException {
         Optional<User> userInDatabase = getUserById(id);
         if (userInDatabase.isEmpty()) {
             return addUser(user);
@@ -62,6 +62,6 @@ public class UserService {
     }
 
     private boolean loginValidation(String login) {
-        return !userRepository.existsByLogin(login);
+        return userRepository.existsByLogin(login);
     }
 }

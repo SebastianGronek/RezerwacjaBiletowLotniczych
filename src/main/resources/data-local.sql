@@ -13,3 +13,6 @@ INSERT INTO users (user_first_name, user_last_name) VALUES ('Bartek', 'Babacki')
 INSERT INTO users (user_first_name, user_last_name) VALUES ('Cecylia', 'Cabacka');
 INSERT INTO users (user_first_name, user_last_name) VALUES ('Damian', 'Dabacki');
 INSERT INTO users (user_first_name, user_last_name) VALUES ('Emilia', 'Ebacka');
+INSERT INTO roles (name) VALUES ('ROLE_USER');
+INSERT INTO roles (name) VALUES ('ROLE_ADMIN');
+INSERT INTO roles (name) VALUES ('ROLE_MODERATOR');
