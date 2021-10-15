@@ -5,10 +5,14 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
 
-    @Query("SELECT login FROM users")
-    List<String> findLogin();
+    Optional<User> findByLogin(String login);
+
+    Boolean existsByLogin(String login);
+
+    Boolean existsByEmail(String email);
 
 }

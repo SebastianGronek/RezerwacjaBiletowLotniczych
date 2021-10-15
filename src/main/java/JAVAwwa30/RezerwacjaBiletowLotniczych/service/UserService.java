@@ -62,7 +62,6 @@ public class UserService {
     }
 
     private boolean loginValidation(String login) {
-        List<String> logins = userRepository.findLogin();
-        return logins.contains(login);
+        return !userRepository.existsByLogin(login);
     }
 }
